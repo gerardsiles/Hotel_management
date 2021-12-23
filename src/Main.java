@@ -186,6 +186,7 @@ public class Main {
 
     // Delete a reservation
     private static void deleteReservation(Hotel hotel) {
+        boolean reservationDeleted = false;
         int reservationNumber = 0;
         Scanner sc = new Scanner(System.in);
         System.out.println("--------------------------");
@@ -205,10 +206,9 @@ public class Main {
                 System.out.print("The reservation has been deleted");
                 break;
             }
-            else {
-                System.out.println("The reservation was not found");
-                break;
-            }
+        }
+        if (!reservationDeleted) {
+            System.out.println("The reservation was not found");
         }
 
     }
@@ -371,6 +371,7 @@ public class Main {
 
     // Delete room
     private static void deleteRoom(Hotel hotel) {
+        boolean roomDeleted = false;
         int roomNumberDelete = 0;
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------------------");
@@ -387,11 +388,12 @@ public class Main {
             if (roomNumberDelete == room.getRoomNumber()) {
                 Room.deleteRoom(hotel, roomNumberDelete);
                 System.out.print("Room was deleted.");
-                break;
-            } else {
-                System.out.println("The room was not found");
+                roomDeleted = true;
                 break;
             }
+        }
+        if (!roomDeleted) {
+            System.out.println("The room was not found");
         }
 
     }
@@ -472,6 +474,7 @@ public class Main {
 
     // Delete customer
     private static void deleteCustomer(Hotel hotel) {
+        boolean customerDeleted = false;
         Scanner sc = new Scanner(System.in);
         System.out.println("---------------------");
         System.out.println("   Delete customer   ");
@@ -482,14 +485,14 @@ public class Main {
         for (Customer customer : hotel.getCustomers()) {
             if (customer.getID().equals(idCustomerDelete)) {
                 Customer.deleteCustomer(hotel, idCustomerDelete);
+                customerDeleted = true;
                 System.out.println("Customer has been deleted.");
-                break;
-            } else {
-                System.out.println("Customer not found");
                 break;
             }
         }
-
+        if (!customerDeleted) {
+            System.out.println("Customer not found");
+        }
     }
 
     // List customers
