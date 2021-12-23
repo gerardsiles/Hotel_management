@@ -204,6 +204,7 @@ public class Main {
             if (res.getReservationNumber() == reservationNumber) {
                 Reservation.deleteReservation(hotel, reservationNumber);
                 System.out.print("The reservation has been deleted");
+                reservationDeleted = true;
                 break;
             }
         }
@@ -512,15 +513,15 @@ public class Main {
 
     // Show available rooms in a period entered by the user filtered by types of room
     private static void availableRoomsPeriod(Hotel hotel) {
-        String startDate = "Enter the start date of the period to be checked (YYYY-mm-dd): ";
-        LocalDate startPeriod = Reservation.parseDate(startDate);
-
-        String endDate = "Enter the end date of the period to be checked (YYYY-mm-dd): ";
-        LocalDate endPeriod = Reservation.parseDate(endDate);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the start date of the period to be checked (YYYY-mm-dd): ");
+        LocalDate startPeriod = Reservation.parseDate(sc.nextLine());
+        System.out.println("Enter the end date of the period to be checked (YYYY-mm-dd): ");
+        LocalDate endPeriod = Reservation.parseDate(sc.nextLine());
 
         // Show available rooms
         System.out.println("======================================================");
-        System.out.println("Rooms available between " + startDate + " and " + endDate);
+        System.out.println("Rooms available between " + startPeriod + " and " + endPeriod);
         System.out.println("======================================================");
         System.out.println("              Available single rooms                  ");
         System.out.println("======================================================");
@@ -556,11 +557,11 @@ public class Main {
     // Show reservations in a period entered by the user
     private static void reservationsPeriod(Hotel hotel) {
         boolean found = false;
-
-        String startDate = "Enter the starting date of the period (YYYY-mm-dd): ";
-        LocalDate startPeriod = Reservation.parseDate(startDate);
-        String endDate = "Enter the ending date of the period (YYYY-mm-dd): ";
-        LocalDate endPeriod = Reservation.parseDate(endDate);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the starting date of the period (YYYY-mm-dd): ");
+        LocalDate startPeriod = Reservation.parseDate(sc.nextLine());
+        System.out.println("Enter the ending date of the period (YYYY-mm-dd): ");
+        LocalDate endPeriod = Reservation.parseDate(sc.nextLine());
         // Iterate over reservations
         if (!hotel.getReservations().isEmpty()) {
             System.out.println("Existing reservations for the period");
@@ -588,11 +589,11 @@ public class Main {
 
     // Reservations filtered by customer in a period
     private static void reservationsCustomerPeriod(Hotel hotel) {
-        String entryDate = "Enter the starting date for the period (YYYY-mm-dd): ";
-        LocalDate startPeriod = Reservation.parseDate(entryDate);
-
-        String exitDate = "Enter the ending date for the period (YYYY-mm-dd): ";
-        LocalDate endPeriod = Reservation.parseDate(exitDate);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the starting date for the period (YYYY-mm-dd): ");
+        LocalDate startPeriod = Reservation.parseDate(sc.nextLine());
+        System.out.println("Enter the ending date for the period (YYYY-mm-dd): ");
+        LocalDate endPeriod = Reservation.parseDate(sc.nextLine());
 
         for (Customer customer : hotel.getCustomers()) {
             boolean inTheReservation = false;

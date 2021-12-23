@@ -77,11 +77,8 @@ public class Reservation {
     // Parse LocalDate
     public static LocalDate parseDate(String string) {
         LocalDate dateToParse = null;
-        Scanner sc = new Scanner(System.in);
-
         do try {
-            String dateString = sc.nextLine();
-            dateToParse = LocalDate.parse(dateString);
+            dateToParse = LocalDate.parse(string);
         } catch (DateTimeParseException e) {
             System.out.println("Enter a right date value (YYYY-mm-dd)" + e);
         }   while (dateToParse == null);
